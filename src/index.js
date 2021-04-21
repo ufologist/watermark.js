@@ -22,8 +22,9 @@
  * @see <a href="https://github.com/ant-design/pro-components/blob/master/packages/layout/src/components/WaterMark/index.tsx">ant-design/pro-components/WaterMark</a>
  */
 function Watermark(options) {
+    this._options;
     this._el;
-    this._canvas = document.createElement('canvas');
+    this._canvas = window.document.createElement('canvas');
     this._context = this._canvas.getContext('2d');
 
     this.render(options);
@@ -44,8 +45,8 @@ Watermark.prototype._initOptions = function(options) {
     this._options.zIndex = this._options.zIndex || 9999;
 };
 Watermark.prototype._initElement = function() {
-    if (this.el) {
-        this.el.parentNode && this.el.parentNode.removeChild(this.el);
+    if (this._el) {
+        this._el.parentNode && this._el.parentNode.removeChild(this._el);
     }
 
     var el = document.createElement('div');
@@ -58,7 +59,7 @@ Watermark.prototype._initElement = function() {
     el.style.zIndex = this._options.zIndex;
     el.style.backgroundRepeat = 'repeat';
 
-    this.el = el;
+    this._el = el;
 };
 Watermark.prototype._initCanvas = function() {
     // 测量文字宽高
@@ -137,8 +138,8 @@ Watermark.prototype._draw = function() {
     this._context.fillText(this._options.text, 0, 0);
 };
 Watermark.prototype._mount = function() {
-    this.el.style.backgroundImage = 'url(' + this._canvas.toDataURL() + ')';
-    this._options.dom.appendChild(this.el);
+    this._el.style.backgroundImage = 'url(' + this._canvas.toDataURL() + ')';
+    this._options.dom.appendChild(this._el);
 };
 
 return Watermark;
