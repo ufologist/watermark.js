@@ -1,0 +1,2 @@
+# watermark.js
+Watermark
