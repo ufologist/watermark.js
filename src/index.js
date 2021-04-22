@@ -20,6 +20,7 @@
  * @param {string} [options.zIndex] 水印层的 z-index 值
  * 
  * @see <a href="https://github.com/ant-design/pro-components/blob/master/packages/layout/src/components/WaterMark/index.tsx">ant-design/pro-components/WaterMark</a>
+ * @see <a href="https://mp.weixin.qq.com/s/r3YxTiblMErCxq5W_GmXVQ">谈谈前端水印</a>
  */
 function Watermark(options) {
     this._options;
