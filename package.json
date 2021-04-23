@@ -1,5 +1,5 @@
 {
-  "name": "watermark.js",
+  "name": "@ufologist/watermark.js",
   "version": "1.0.0",
   "description": "Watermark",
   "main": "src/index.js",

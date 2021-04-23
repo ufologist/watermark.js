@@ -37,7 +37,7 @@
 ### npm 包
 
 ```javascript
-import Watermark from 'watermark.js';
+import Watermark from '@ufologist/watermark.js';
 
 // 创建水印
 var watermark = new Watermark({
