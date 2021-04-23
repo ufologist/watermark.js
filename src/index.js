@@ -40,7 +40,7 @@ Watermark.prototype._initOptions = function(options) {
     this._options = options || {};
     this._options.text = this._options.text || '          水印          ';
     this._options.font = this._options.font || '12px -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif';
-    this._options.fillStyle = this._options.fillStyle || 'rgba(0,0,0,0.1)';
+    this._options.fillStyle = this._options.fillStyle || 'rgba(0,0,0,0.05)';
     this._options.degree = this._options.degree || -22;
     this._options.dom = this._options.dom || window.document.body;
     this._options.zIndex = this._options.zIndex || 9999;
@@ -67,20 +67,25 @@ Watermark.prototype._initCanvas = function() {
     this._context.font = this._options.font;
     var textWidth = this._context.measureText(this._options.text).width;
     var textHeight = this._getTextHeight(this._options.text, this._options.font);
-    var halfHeight = textHeight / 2;
 
-    // 计算画布的宽高刚好放得下文字内容
-    var result = this._getRightAngledTriangleLength(textWidth, Math.abs(this._options.degree));
-    this._canvas.width = result.adjacent + textHeight;
-    this._canvas.height = result.opposite + textHeight + halfHeight;
+    // 计算画布尺寸(根据三角形的对边和邻边长度)
+    // 示意图片: https://user-images.githubusercontent.com/167221/115840383-334caf00-a44e-11eb-9acd-cad08c0b657d.jpg
+    var radian = this._degreeToRadian(this._options.degree);
+    var bigTriangle = this._getRightAngledTriangleLength(textWidth, radian);
+    var smallTriangle = this._getRightAngledTriangleLength(textHeight, radian);
+    this._canvas.width = smallTriangle.opposite + bigTriangle.adjacent;
+    this._canvas.height = bigTriangle.opposite + smallTriangle.adjacent;
 
     // 设置文字样式
     this._context.font = this._options.font;
     this._context.fillStyle = this._options.fillStyle;
+    this._context.textBaseline = 'middle';
+    this._context.textAlign = 'center';
 
-    // 调整画布(移动到画布最底下, 偏移 1/2 行高避免文字被遮挡)
-    this._context.translate(halfHeight, this._canvas.height - halfHeight);
-    this._context.rotate(this._options.degree * Math.PI / 180);
+    // 偏移画布坐标系从顶点到画布中心
+    this._context.translate(this._canvas.width / 2, this._canvas.height / 2)
+    // 以画布坐标系顶点旋转画布
+    this._context.rotate(radian);
 };
 /**
  * 根据斜边长度和角度获取直角三角形对边和邻边的长度
@@ -97,21 +102,19 @@ Watermark.prototype._initCanvas = function() {
  * ∠A的邻边比对比=cotA=b/a（即余切）
  * 
  * @param {number} hypotenuse 斜边长度
- * @param {number} degree 角度
+ * @param {number} radian 弧度
  * @see https://zhidao.baidu.com/question/808006945738104972.html
  */
-Watermark.prototype._getRightAngledTriangleLength = function(hypotenuse, degree) {
-    // 角度转弧度
-    var radian = degree * (2 * Math.PI / 360);
+Watermark.prototype._getRightAngledTriangleLength = function(hypotenuse, radian) {
     return {
         /**
          * 对边
          */
-        opposite: Math.sin(radian) * hypotenuse,
+        opposite: Math.abs(Math.sin(radian)) * hypotenuse,
         /**
          * 邻边
          */
-        adjacent: Math.cos(radian) * hypotenuse,
+        adjacent: Math.abs(Math.cos(radian)) * hypotenuse,
     };
 };
 /**
@@ -133,6 +136,15 @@ Watermark.prototype._getTextHeight = function(text, font) {
     document.body.removeChild(span);
 
     return textHeight;
+};
+/**
+ * 角度转弧度
+ * 
+ * @param {number} degree 
+ * @see <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate">CanvasRenderingContext2D.rotate</a>
+ */
+Watermark.prototype._degreeToRadian = function(degree) {
+    return degree * Math.PI / 180;
 };
 Watermark.prototype._draw = function() {
     this._initCanvas();
