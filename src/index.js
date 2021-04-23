@@ -13,11 +13,11 @@
  * 
  * @param {object} [options]
  * @param {string} [options.text] 水印文字, 可以通过空格增加间距
- * @param {string} [options.font] 文字样式(同 css font 属性)
  * @param {string} [options.fillStyle] 文字颜色
- * @param {string} [options.degree] 水印旋转角度(顺时针方向)
+ * @param {string} [options.font] 文字样式(同 CSS font 属性)
+ * @param {number} [options.degree] 水印文字的旋转角度(顺时针方向为正数)
+ * @param {number} [options.zIndex] 水印层的 z-index 值
  * @param {Node} [options.dom] 挂载水印的 DOM 元素
- * @param {string} [options.zIndex] 水印层的 z-index 值
  * 
  * @see <a href="https://github.com/ant-design/pro-components/blob/master/packages/layout/src/components/WaterMark/index.tsx">ant-design/pro-components/WaterMark</a>
  * @see <a href="https://mp.weixin.qq.com/s/r3YxTiblMErCxq5W_GmXVQ">谈谈前端水印</a>
@@ -39,11 +39,11 @@ Watermark.prototype.render = function(options) {
 Watermark.prototype._initOptions = function(options) {
     this._options = options || {};
     this._options.text = this._options.text || '          水印          ';
-    this._options.font = this._options.font || '12px -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif';
     this._options.fillStyle = this._options.fillStyle || 'rgba(0,0,0,0.05)';
+    this._options.font = this._options.font || '12px -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif';
     this._options.degree = this._options.degree || -22;
-    this._options.dom = this._options.dom || window.document.body;
     this._options.zIndex = this._options.zIndex || 9999;
+    this._options.dom = this._options.dom || window.document.body;
 };
 Watermark.prototype._initElement = function() {
     if (this._el) {
