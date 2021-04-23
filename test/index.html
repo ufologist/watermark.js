@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watermark.js Demo</title>
+</head>
+<body>
+    <h1><a href="https://github.com/ufologist/watermark.js">watermark.js</a> Demo</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque magni minima ipsam recusandae hic animi, doloribus, vitae quibusdam, officia ex consequatur ipsa vel beatae unde enim veritatis illum provident cumque.</p>
+    <form>
+        <fieldset>
+            <legend>Personal information:</legend>
+            First name:<br>
+            <input type="text" name="firstname" value="Mickey">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="Mouse">
+            <br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script src="https://unpkg.com/watermark.js"></script>
+    <script>
+    new Watermark({
+        text: '          我是水印          你看不到我          ',
+    });
+    </script>
+</body>
+</html>

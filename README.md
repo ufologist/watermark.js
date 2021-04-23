@@ -13,7 +13,7 @@
 
 ## 功能
 
-给页面打上全屏的文字水印
+给页面打上全屏的文字水印: [watermark.js Demo](http://htmlpreview.github.io/?https://github.com/ufologist/watermark.js/blob/master/test/index.html)
 
 ↓↓ 水印在这里 ↓↓
 
