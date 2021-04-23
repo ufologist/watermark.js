@@ -13,7 +13,9 @@
 
 ## 功能
 
-水印
+给页面打上全屏的文字水印
+
+![watermark](https://user-images.githubusercontent.com/167221/115845474-76f5e780-a453-11eb-8741-9e780b4da4ac.png)
 
 ## 选项
 
@@ -44,18 +46,18 @@ watermark.render({
 });
 ```
 
-### `<script>` 引入
+### `<script>`
 
 ```html
 <script src=""></script>
 <script>
 // 创建水印
-var watermark = new Watermark({
-    text: '水印',
+new Watermark({
+    text: '          我是水印          你看不到我          ',
 });
 </script>
 ```
 
 ## 绘制示意图
 
-![canvas-width-height](https://user-images.githubusercontent.com/167221/115840383-334caf00-a44e-11eb-9acd-cad08c0b657d.jpg) by @iUUCoder
+![canvas-width-height](https://user-images.githubusercontent.com/167221/115840383-334caf00-a44e-11eb-9acd-cad08c0b657d.jpg) by [@iUUCoder](https://github.com/iUUCoder)
