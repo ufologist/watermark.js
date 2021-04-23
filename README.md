@@ -53,7 +53,7 @@ watermark.render({
 ### `<script>`
 
 ```html
-<script src=""></script>
+<script src="https://unpkg.com/@ufologist/watermark.js"></script>
 <script>
 // 创建水印
 new Watermark({
