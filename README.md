@@ -15,7 +15,9 @@
 
 给页面打上全屏的文字水印
 
-![watermark](https://user-images.githubusercontent.com/167221/115845474-76f5e780-a453-11eb-8741-9e780b4da4ac.png)
+↓↓ 水印在这里 ↓↓
+<img src="https://user-images.githubusercontent.com/167221/115845474-76f5e780-a453-11eb-8741-9e780b4da4ac.png" style="display:block;border:1px solid #eee">
+↑↑ 要仔细看看 ↑↑
 
 ## 选项
 
